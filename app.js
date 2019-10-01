@@ -3,22 +3,38 @@ const app = express();
 const port = 3000;
 const path =  require('path')
 
-app.use(express.static('public'));
+let games = {};
 
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname ,"public/landing.html"));
+app.use(express.static('public'));
+app.set('views', './views')
+app.set('view engine', 'pug')
+
+app.get("/index", (req, res) => {
+    res.render("index");
 });
 
 app.get("/create-game", (req, res) => {
+    const id = Math.random().toString(36).substring(7);
+    games[id] = [];
 
+    res.redirect(`/game/${id}`);
 });
+
+app.get("/game-connect/:gameId/:peerId", (req, res) => {
+    const gameId = req.params.gameId;
+    const peerId = req.params.peerId;
+
+    games[gameId].push(peerId);
+
+    res.json(games[gameID]);
+})
 
 app.get("/game/:gameId", (req, res) => {
     const gameId = req.params.gameId;
     if(!gameId)
         res.sendStatus(404);
 
-    res.sendFile(path.join(__dirname ,"public/index.html"));
+    res.render("game", {gameId: gameId});
 
 });
 

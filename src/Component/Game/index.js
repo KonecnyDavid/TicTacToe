@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { usePeerState } from "react-peer";
+import React, { useState, useEffect } from "react";
+import { usePeerState, useReceivePeerState } from "react-peer";
 import Field from "./../Field";
 
 const initializeState = size => {
@@ -14,16 +14,21 @@ const initializeState = size => {
   return initialState;
 };
 
-const Game = ({ brokerId, size, player}) => {
+const Game = ({ recieveBrokerId, size, player}) => {
   const [state, setState] = useState(initializeState(size));
 
-
+  const [messageIn, isConnected] = useReceivePeerState(recieveBrokerId);
+  const [messageOut, setMessageOut, sendBrokerId, connections] = usePeerState();
 
   const clickHandler = (x, y) => {
 
     const newState = state.map((row, indexOut) => row.map((col, indexIn)=> x === indexIn && y === indexOut?player === "circle"? true : false : col))
     setState(newState);
   };
+
+  useEffect(() => {
+
+  }, [messageIn]);
 
   return (
     <div>
