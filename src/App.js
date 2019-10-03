@@ -2,10 +2,10 @@ import React from 'react';
 import './App.css';
 import Game from './Component/Game';
 
-function App() {
+function App({gameId}) {
   return (
     <div className="App">
-      <Game size={10} player="circle"/>
+      <Game size={10} player="circle" gameId={gameId}/>
     </div>
   );
 }

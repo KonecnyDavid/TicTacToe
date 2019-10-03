@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { usePeerState, useReceivePeerState } from "react-peer";
 import Field from "./../Field";
+import Peer from 'peerjs';
+const axios = require("axios").default;
 
 const initializeState = size => {
   let initialState = [];
@@ -14,21 +15,57 @@ const initializeState = size => {
   return initialState;
 };
 
-const Game = ({ recieveBrokerId, size, player}) => {
+const Game = ({ size, gameId }) => {
+  const [gameState, setGameState] = useState({started: false, isCircle: null, move: null, oponentId: null});
   const [state, setState] = useState(initializeState(size));
+  const [connection, setConnection] = useState();
 
-  const [messageIn, isConnected] = useReceivePeerState(recieveBrokerId);
-  const [messageOut, setMessageOut, sendBrokerId, connections] = usePeerState();
+  const peer = new Peer(); 
+
+  peer.on('connection', (conn) => {
+    conn.on('data', (data) => {
+      if(data.type === "request-connection"){
+        setGameState({...gameState, oponentId: data.name});
+        console.log(data);
+      }
+    });
+
+  });
 
   const clickHandler = (x, y) => {
-
-    const newState = state.map((row, indexOut) => row.map((col, indexIn)=> x === indexIn && y === indexOut?player === "circle"? true : false : col))
+    if(gameState.started){
+      const newState = state.map((row, indexOut) =>
+      row.map((col, indexIn) =>
+        x === indexIn && y === indexOut
+          ? gameState.isCircle
+          : col
+      )
+    );
     setState(newState);
+    }
   };
-
   useEffect(() => {
+    const sendBrokerId = peer.id;
 
-  }, [messageIn]);
+    axios
+        .get(`/game-connect/${gameId}/${sendBrokerId}`)
+        .then(function(response) {
+          const data = response.data;
+
+          for(let name in data)
+            if(name !== sendBrokerId){
+              const conn = peer.connect(name);
+              conn.on('open', () => {
+                conn.send({type: "request-connection", name: peer.id});
+              });
+              console.log(peer.id)
+              break;
+            }
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+  }, [])
 
   return (
     <div>
@@ -37,7 +74,11 @@ const Game = ({ recieveBrokerId, size, player}) => {
           {state.map((items, y) => (
             <tr key={y}>
               {items.map((item, x) => (
-                <Field key={`${y}${x}`} isCircle={item} onClick={() => clickHandler(x, y)}/>
+                <Field
+                  key={`${y}${x}`}
+                  isCircle={item}
+                  onClick={() => clickHandler(x, y)}
+                />
               ))}
             </tr>
           ))}

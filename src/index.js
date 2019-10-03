@@ -4,8 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-console.log(document.getElementById('root'))
-ReactDOM.render(<App />, document.getElementById('root'));
+window.onload = () => {
+    const container = document.getElementById('root')
+    ReactDOM.render(<App gameId={container.dataset.gameid}/>, container);
+}
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

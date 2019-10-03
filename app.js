@@ -9,7 +9,7 @@ app.use(express.static('public'));
 app.set('views', './views')
 app.set('view engine', 'pug')
 
-app.get("/index", (req, res) => {
+app.get("/", (req, res) => {
     res.render("index");
 });
 
@@ -24,9 +24,10 @@ app.get("/game-connect/:gameId/:peerId", (req, res) => {
     const gameId = req.params.gameId;
     const peerId = req.params.peerId;
 
-    games[gameId].push(peerId);
-
-    res.json(games[gameID]);
+    if(!games[gameId].includes(peerId))
+        games[gameId].push(peerId);
+        
+    res.json(games[gameId]);
 })
 
 app.get("/game/:gameId", (req, res) => {
