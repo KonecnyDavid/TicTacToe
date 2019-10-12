@@ -1,6 +1,25 @@
 import React from "react";
-
-const Field = ({ isCircle, onClick }) => (
+import ReactSVG from "react-svg";
+const Field = ({ isCircle, onClick }) => {
+  const symbol =
+    isCircle === null ? (
+      ""
+    ) : isCircle === true ? (
+      <ReactSVG
+        beforeInjection={svg => {
+          svg.setAttribute("style", "height: 30px; width: 30px;");
+        }}
+        src="/circle.svg"
+      />
+    ) : (
+      <ReactSVG
+        beforeInjection={svg => {
+          svg.setAttribute("style", "height: 30px; width: 30px;");
+        }}
+        src="/cross.svg"
+      />
+    );
+  return (
     <td
       onClick={onClick}
       style={{
@@ -13,8 +32,9 @@ const Field = ({ isCircle, onClick }) => (
         cursor: "pointer"
       }}
     >
-      {isCircle === null ? "" : isCircle === true ? "O" : "X"}
+      {symbol}
     </td>
-);
+  );
+};
 
 export default Field;

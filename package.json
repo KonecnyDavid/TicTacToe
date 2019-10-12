@@ -8,10 +8,11 @@
   "dependencies": {
     "axios": "^0.19.0",
     "express": "^4.17.1",
-    "peerjs": "^1.1.0",
     "pug": "^2.0.4",
     "react": "^16.10.1",
-    "react-dom": "^16.10.1"
+    "react-dom": "^16.10.1",
+    "react-peer": "^0.2.6",
+    "react-svg": "^10.0.22"
   },
   "babel": {
     "presets": [

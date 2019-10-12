@@ -662,6 +662,13 @@
     "@babel/plugin-transform-react-jsx-self" "^7.0.0"
     "@babel/plugin-transform-react-jsx-source" "^7.0.0"
 
+"@babel/runtime@^7.6.2":
+  version "7.6.3"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.6.3.tgz#935122c74c73d2240cafd32ddb5fc2a6cd35cf1f"
+  integrity sha512-kq6anf9JGjW8Nt5rYfEuGRaEAaH1mkv3Bbu6rYvLOpPh/RusSJXuKPEAoZ7L7gybZkchE8+NV5g9vKF4AGAtsA==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/template@^7.1.0", "@babel/template@^7.4.4", "@babel/template@^7.6.0":
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.6.0.tgz#7f0159c7f5012230dad64cca42ec9bdb5c9536e6"
@@ -695,6 +702,13 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@tanem/svg-injector@^8.0.33":
+  version "8.0.33"
+  resolved "https://registry.yarnpkg.com/@tanem/svg-injector/-/svg-injector-8.0.33.tgz#df26697bf9735e7da57968b0397ee0613de684fb"
+  integrity sha512-adpLvV4RXAxzI2H9s6ESHZZX55Z3OMHCq2xm61J+ZBchiZUQhnQL4AIV4kteKcxeBxWr6yTcK6irByyo2NzMtQ==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+
 "@types/babel-types@*", "@types/babel-types@^7.0.0":
   version "7.0.7"
   resolved "https://registry.yarnpkg.com/@types/babel-types/-/babel-types-7.0.7.tgz#667eb1640e8039436028055737d2b9986ee336e3"
@@ -707,15 +721,10 @@
   dependencies:
     "@types/babel-types" "*"
 
-"@types/node@^10.14.17":
-  version "10.14.19"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.19.tgz#f52742c7834a815dedf66edfc8a51547e2a67342"
-  integrity sha512-j6Sqt38ssdMKutXBUuAcmWF8QtHW1Fwz/mz4Y+Wd9mzpBiVFirjpNQf363hG5itkG+yGaD+oiLyb50HxJ36l9Q==
-
-"@types/webrtc@^0.0.25":
-  version "0.0.25"
-  resolved "https://registry.yarnpkg.com/@types/webrtc/-/webrtc-0.0.25.tgz#bd2b4e7b4c13250b3d58439623f2b9adfd7dee9e"
-  integrity sha512-ep/e+p2uUKV1h96GBgRhwomrBch/bPDHPOKbCHODLGRUDuuKe2s7sErlFVKw+5BYUzvpxSmUNqoadaZ44MePoQ==
+"@types/node@^10.12.0":
+  version "10.14.21"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.14.21.tgz#4a9db7ef1d1671c0015e632c5fa3d46c86c58c1e"
+  integrity sha512-nuFlRdBiqbF+PJIEVxm2jLFcQWN7q7iWEJGsBV4n7v1dbI9qXB8im2pMMKMCUZe092sQb5SQft2DHfuQGK5hqQ==
 
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
@@ -2077,10 +2086,10 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
-eventemitter3@^3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-3.1.2.tgz#2d3d48f9c346698fce83a85d7d664e98535df6e7"
-  integrity sha512-tvtQIeLVHjDkJYnzf2dgVMxfuSGJeM/7UCG17TT4EumTfNtF+0nebF/4zWOIkCreAbtNqhGEboB6BWrwqNaw4Q==
+eventemitter3@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-0.1.6.tgz#8c7ac44b87baab55cd50c828dc38778eac052ea5"
+  integrity sha1-jHrES4e6q1XNUMgo3Dh3jqwFLqU=
 
 events@^3.0.0:
   version "3.0.0"
@@ -2128,7 +2137,7 @@ expand-tilde@^2.0.0, expand-tilde@^2.0.2:
   dependencies:
     homedir-polyfill "^1.0.1"
 
-express@^4.17.1:
+express@^4.16.3, express@^4.17.1:
   version "4.17.1"
   resolved "https://registry.yarnpkg.com/express/-/express-4.17.1.tgz#4491fc38605cf51f8629d39c2b5d026f98a4c134"
   integrity sha512-mHJ9O79RqluphRrcw2X/GTh3k9tVv8YcoyY4Kkh4WDMUYKRZUq0h1o0w2rrrxBqM7VoeUVqgb27xlEMXTnYt4g==
@@ -2928,6 +2937,11 @@ isobject@^3.0.0, isobject@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
+
+js-binarypack@0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/js-binarypack/-/js-binarypack-0.0.9.tgz#454243d3de212961cc1514a2f119dec2faf64035"
+  integrity sha1-RUJD094hKWHMFRSi8Rnewvr2QDU=
 
 js-levenshtein@^1.1.3:
   version "1.1.6"
@@ -3757,23 +3771,21 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-peerjs-js-binarypack@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/peerjs-js-binarypack/-/peerjs-js-binarypack-1.0.1.tgz#80fa2b61c794a6b16d64253700405e476ada29be"
-  integrity sha512-N6aeia3NhdpV7kiGxJV5xQiZZCVEEVjRz2T2C6UZQiBkHWHzUv/oWA4myQLcwBwO8LUoR1KWW5oStvwVesmfCg==
-
-peerjs@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/peerjs/-/peerjs-1.1.0.tgz#acfcaa366a43b1a3a002b7ef231b63942b10b6ce"
-  integrity sha512-y5ndx8sTOOFnU3AcWjXaQplgmaxVZ6oT2q/0QazSmRjf+pSlnDfpAd7lM7m3YxFGJ6iM/0uopdpiSX2Ql64kug==
+peerjs@^0.3.18, peerjs@^0.3.20:
+  version "0.3.24"
+  resolved "https://registry.yarnpkg.com/peerjs/-/peerjs-0.3.24.tgz#98555d834fa37e6849c11086dee45125796271fe"
+  integrity sha512-59yEAe64sTOleq6x7GAFphvit9X8N9XOq6JUwAKo41iw6D6ufhlHVLDYAq3emVt4ALn7GXWgz/PKV37MaRdLfQ==
   dependencies:
-    "@types/node" "^10.14.17"
-    "@types/webrtc" "^0.0.25"
-    eventemitter3 "^3.1.2"
+    "@types/node" "^10.12.0"
+    eventemitter3 "^0.1.6"
+    express "^4.16.3"
+    js-binarypack "0.0.9"
     opencollective "^1.0.3"
     opencollective-postinstall "^2.0.0"
-    peerjs-js-binarypack "1.0.1"
-    webrtc-adapter "^7.3.0"
+    peerjs "^0.3.20"
+    react "^16.8.1"
+    reliable "git+https://github.com/michelle/reliable.git"
+    webrtc-adapter "^6.3.2"
 
 pify@^4.0.1:
   version "4.0.1"
@@ -3895,7 +3907,7 @@ promise@^7.0.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.6.2:
+prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -4144,10 +4156,35 @@ react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.10.1.tgz#0612786bf19df406502d935494f0450b40b8294f"
   integrity sha512-BXUMf9sIOPXXZWqr7+c5SeOKJykyVr2u0UDzEf4LNGc6taGkQe1A9DFD07umCIXz45RLr9oAAwZbAJ0Pkknfaw==
 
+react-peer@^0.2.6:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/react-peer/-/react-peer-0.2.6.tgz#8898d2b26f92f7673fa6d2fea96dd692d13bb804"
+  integrity sha512-sv9HePRDjJbRqMEiZcBnj/0zvVdo2++OjFJftdidoJE0RM3Iw8e1zlatq6LUdIvIAMhEg+/H0tofA5rfOkGWTw==
+  dependencies:
+    peerjs "^0.3.18"
+
+react-svg@^10.0.22:
+  version "10.0.22"
+  resolved "https://registry.yarnpkg.com/react-svg/-/react-svg-10.0.22.tgz#be8b32a3276e187997cc6eb5b8f88929c5ef16c9"
+  integrity sha512-L8FFiaaK/wzewAQgEIO3FHyEWSMb5Vjk0sxzmsw5zGJbpakvEqTXsAYA3y+HS0gOv0vu1eKqEx43fdqBRvJuTQ==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@tanem/svg-injector" "^8.0.33"
+    prop-types "^15.7.2"
+
 react@^16.10.1:
   version "16.10.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.10.1.tgz#967c1e71a2767dfa699e6ba702a00483e3b0573f"
   integrity sha512-2bisHwMhxQ3XQz4LiJJwG3360pY965pTl/MRrZYxIBKVj4fOHoDs5aZAkYXGxDRO1Li+SyjTAilQEbOmtQJHzA==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+
+react@^16.8.1:
+  version "16.10.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.10.2.tgz#a5ede5cdd5c536f745173c8da47bda64797a4cf0"
+  integrity sha512-MFVIq0DpIhrHFyqLU0S3+4dIcBhhOvBE8bJ/5kHPVOVaGdo0KuiQzpcjCPsf585WvhypqtrMILyoE2th6dT+Lw==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -4206,6 +4243,11 @@ regenerator-runtime@^0.11.0:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
 
+regenerator-runtime@^0.13.2:
+  version "0.13.3"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.3.tgz#7cf6a77d8f5c6f60eb73c5fc1955b2ceb01e6bf5"
+  integrity sha512-naKIZz2GQ8JWh///G7L3X6LaQUAMp2lvb1rvwwsURe/VXwD6VMfr+/1NuNw3ag8v2kY1aQ/go5SNn79O9JU7yw==
+
 regenerator-transform@^0.14.0:
   version "0.14.1"
   resolved "https://registry.yarnpkg.com/regenerator-transform/-/regenerator-transform-0.14.1.tgz#3b2fce4e1ab7732c08f665dfdb314749c7ddd2fb"
@@ -4249,6 +4291,12 @@ relateurl@0.2.x:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
+
+"reliable@git+https://github.com/michelle/reliable.git":
+  version "0.1.0"
+  resolved "git+https://github.com/michelle/reliable.git#70604f577ae55a2eb015c17d73cc8d9dce5f9ec4"
+  dependencies:
+    js-binarypack "0.0.9"
 
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
@@ -4353,7 +4401,7 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
-rtcpeerconnection-shim@^1.2.15:
+rtcpeerconnection-shim@^1.2.14:
   version "1.2.15"
   resolved "https://registry.yarnpkg.com/rtcpeerconnection-shim/-/rtcpeerconnection-shim-1.2.15.tgz#e7cc189a81b435324c4949aa3dfb51888684b243"
   integrity sha512-C6DxhXt7bssQ1nHb154lqeL0SXz5Dx4RczXZu2Aa/L1NJFnEVDxFwCBo3fqtuljhHIGceg5JKBV4XJ0gW5JKyw==
@@ -4431,7 +4479,7 @@ schema-utils@^2.0.0, schema-utils@^2.0.1:
     ajv "^6.10.2"
     ajv-keywords "^3.4.1"
 
-sdp@^2.10.0, sdp@^2.6.0:
+sdp@^2.6.0, sdp@^2.9.0:
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/sdp/-/sdp-2.10.0.tgz#643fff1a43cdba54a739c7b202f56bd854474af2"
   integrity sha512-H+VjfyQpRz9GezhshJmkXTtCAT9/2g9az3GFDPYfGOz0eAOQU1fCrL3S9Dq/eUT9FtOyLi/czdR9PzK3fKUYOQ==
@@ -5162,13 +5210,13 @@ webpack@^4.41.0:
     watchpack "^1.6.0"
     webpack-sources "^1.4.1"
 
-webrtc-adapter@^7.3.0:
-  version "7.3.0"
-  resolved "https://registry.yarnpkg.com/webrtc-adapter/-/webrtc-adapter-7.3.0.tgz#a65e18aad42759bab6ced7f8cfff11b051321e2a"
-  integrity sha512-pKcwt6IR6RLCD6jlcdOOi88iVwdzppHlkOhtgTSuZHtYTxdD09t5fA1Di7GJU7je8oHcCBlNfb7zwBsetERnmQ==
+webrtc-adapter@^6.3.2:
+  version "6.4.8"
+  resolved "https://registry.yarnpkg.com/webrtc-adapter/-/webrtc-adapter-6.4.8.tgz#eeca3f0d5b40c0e629b865ef2a936a0b658274de"
+  integrity sha512-YM8yl545c/JhYcjGHgaCoA7jRK/KZuMwEDFeP2AcP0Auv5awEd+gZE0hXy9z7Ed3p9HvAXp8jdbe+4ESb1zxAw==
   dependencies:
-    rtcpeerconnection-shim "^1.2.15"
-    sdp "^2.10.0"
+    rtcpeerconnection-shim "^1.2.14"
+    sdp "^2.9.0"
 
 which-module@^2.0.0:
   version "2.0.0"

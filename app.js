@@ -24,8 +24,11 @@ app.get("/game-connect/:gameId/:peerId", (req, res) => {
     const gameId = req.params.gameId;
     const peerId = req.params.peerId;
 
-    if(!games[gameId].includes(peerId))
+    if(!games[gameId].includes(peerId) && games[gameId].length < 2){
         games[gameId].push(peerId);
+        console.log(`Connecting player ${peerId} to game ${gameId}`)
+    }
+        
         
     res.json(games[gameId]);
 })
