@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Field from "./../Field";
 import { usePeerState, useReceivePeerState } from "react-peer";
 import checkWin from "./win_check";
+import Board from "../Board";
+import GameInfo from "../GameInfo";
 const axios = require("axios").default;
 
 const initializeState = size => {
@@ -85,7 +86,6 @@ const Game = ({ size, gameId }) => {
     if (peerState) {
       switch (peerState.type) {
         case "connection":
-          console.log(peerState.data);
           break;
         case "turn":
           setBoard(peerState.data);
@@ -122,38 +122,24 @@ const Game = ({ size, gameId }) => {
     }
   }, [isConnected]);
 
-  console.log(gameState);
-
-  const move = gameState.move ? "You" : "Opponent";
-  const started = gameState.started ? "Yes" : "No";
-  const isCircle = gameState.isCircle ? "O" : "X";
-  const conn = isConnected ? "Yes" : "No";
-
   return (
     <div>
-      Move: {move} <br />
-      Started: {started}
-      <br />
-      Symbol: {isCircle}
-      <br />
-      IsConnected: {conn}
-      <br />
-      Winner: {gameState.winner}
-      <table style={{ borderCollapse: "collapse" }}>
-        <tbody>
-          {board.map((items, y) => (
-            <tr key={y}>
-              {items.map((item, x) => (
-                <Field
-                  key={`${y}${x}`}
-                  isCircle={item}
-                  onClick={() => clickHandler(x, y)}
-                />
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="columns">
+        <div className="column">
+          <Board clickHandler={clickHandler} board={board} />
+        </div>
+        <div className="column">
+          <GameInfo gameState={gameState} isConnected={isConnected} />
+        </div>
+      </div>
+      <nav class="level">
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Game Id</p>
+            <p class="title">{gameId}</p>
+          </div>
+        </div>
+      </nav>
     </div>
   );
 };

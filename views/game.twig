@@ -1,0 +1,13 @@
+{% extends "layout.twig" %}
+
+{% block body %}
+  <section class="section">
+    <div class="container">
+      <div id="root" data-gameid="{{gameId}}"></div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block js %}
+  <script type="text/javascript" src="/main.js"></script>
+{% endblock %}

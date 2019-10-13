@@ -12,7 +12,8 @@
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-peer": "^0.2.6",
-    "react-svg": "^10.0.22"
+    "react-svg": "^10.0.22",
+    "twig": "^1.13.3"
   },
   "babel": {
     "presets": [

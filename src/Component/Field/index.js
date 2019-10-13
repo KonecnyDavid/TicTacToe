@@ -5,19 +5,9 @@ const Field = ({ isCircle, onClick }) => {
     isCircle === null ? (
       ""
     ) : isCircle === true ? (
-      <ReactSVG
-        beforeInjection={svg => {
-          svg.setAttribute("style", "height: 30px; width: 30px;");
-        }}
-        src="/circle.svg"
-      />
+      <i class="far fa-circle"></i>
     ) : (
-      <ReactSVG
-        beforeInjection={svg => {
-          svg.setAttribute("style", "height: 30px; width: 30px;");
-        }}
-        src="/cross.svg"
-      />
+      <i class="fas fa-times"></i>
     );
   return (
     <td
