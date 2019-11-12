@@ -43,16 +43,18 @@ const Game = ({ size, gameId }) => {
       setBoard(newBoard);
       setState({ type: "turn", data: newBoard });
 
-      const winStatus = checkWin(newBoard, x, y);
+      const is_win = checkWin(newBoard, x, y, gameState.isCircle);
 
-      if (winStatus.type == "win") {
+      console.log(is_win);
+
+      if (is_win) {
         setGameState({
           ...gameState,
           move: false,
-          winner: winStatus.isCircle ? "O" : "X",
+          winner: gameState.isCircle ? "O" : "X",
           started: false
         });
-        setState({ type: "win", data: winStatus.isCircle });
+        setState({ type: "win", data: gameState.isCircle });
       } else {
         setGameState({ ...gameState, move: false });
       }
@@ -89,6 +91,7 @@ const Game = ({ size, gameId }) => {
           break;
         case "turn":
           setBoard(peerState.data);
+          console.log("My turn");
           setGameState({ ...gameState, move: true });
           break;
         case "win":
@@ -132,11 +135,11 @@ const Game = ({ size, gameId }) => {
           <GameInfo gameState={gameState} isConnected={isConnected} />
         </div>
       </div>
-      <nav class="level">
-        <div class="level-item has-text-centered">
+      <nav className="level">
+        <div className="level-item has-text-centered">
           <div>
-            <p class="heading">Game Id</p>
-            <p class="title">{gameId}</p>
+            <p className="heading">Game Id</p>
+            <p className="title">{gameId}</p>
           </div>
         </div>
       </nav>

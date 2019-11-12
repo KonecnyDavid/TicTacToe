@@ -5,9 +5,9 @@ const Field = ({ isCircle, onClick }) => {
     isCircle === null ? (
       ""
     ) : isCircle === true ? (
-      <i class="far fa-circle"></i>
+      <i className="far fa-circle"></i>
     ) : (
-      <i class="fas fa-times"></i>
+      <i className="fas fa-times"></i>
     );
   return (
     <td

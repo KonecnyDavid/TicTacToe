@@ -27,7 +27,7 @@ app.get("/join", (req, res) => {
     const gameId = req.query.gameId;
 
     if(!games.hasOwnProperty(gameId))
-        res.send("This game does not exists")
+        res.send("This game does not exists");
 
     res.redirect(`/game/${gameId}`);
 });
@@ -42,7 +42,7 @@ app.get("/create-game", (req, res) => {
 app.get("/game-connect/:gameId/:peerId", (req, res) => {
     const gameId = req.params.gameId;
     const peerId = req.params.peerId;
-    const currentGame = games[gameId]
+    const currentGame = games[gameId];
 
     if(!currentGame.includes(peerId) && currentGame.length < 2){
         games[gameId].push(peerId);
@@ -50,7 +50,7 @@ app.get("/game-connect/:gameId/:peerId", (req, res) => {
     }
         
     res.json(games[gameId]);
-})
+});
 
 app.get("/game/:gameId", (req, res) => {
     const gameId = req.params.gameId;
