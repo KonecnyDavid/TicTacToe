@@ -1,26 +1,26 @@
 import React from "react";
-import ReactSVG from "react-svg";
+import Circle from "../../rec.png"
+import Cross from "../../plus.png"
+
 const Field = ({ isCircle, onClick }) => {
   const symbol =
     isCircle === null ? (
       ""
     ) : isCircle === true ? (
-      <i className="far fa-circle"></i>
+      <img src={Circle} style={{width: 40, height: 40, marginBottom: "-5px"}}/>
     ) : (
-      <i className="fas fa-times"></i>
+      <img src={Cross} style={{width: 40, height: 40, marginBottom: "-5px"}}/>
     );
   return (
     <td
       onClick={onClick}
       style={{
-        width: "40px",
-        height: "40px",
+        width: 50,
+        height: 50,
+        padding: 5,
         border: "1px solid black",
-        fontSize: "30px",
-        textAlign: "center",
-        verticalAlign: "center",
-        cursor: "pointer"
       }}
+    
     >
       {symbol}
     </td>

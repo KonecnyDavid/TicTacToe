@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { usePeerState, useReceivePeerState } from "react-peer";
 import checkWin from "./win_check";
 import Board from "../Board";
 import GameInfo from "../GameInfo";
-const axios = require("axios").default;
+import Peer from "peerjs";
 
-const initializeState = size => {
+const initializeState = (size) => {
   let initialState = [];
   for (let y = 0; y < size; y++) {
     const row = [];
@@ -17,21 +16,21 @@ const initializeState = size => {
   return initialState;
 };
 
+const peer = new Peer();
+
 const Game = ({ size, gameId }) => {
   const [gameState, setGameState] = useState({
     started: false,
     isCircle: null,
     move: null,
-    winner: null
+    winner: null,
   });
-  const [board, setBoard] = useState(initializeState(size));
 
-  const [peerBrokerId, setPeerBrokerId] = useState("");
-  const [state, setState, brokerId, connections, stateErr] = usePeerState({
-    type: "connection",
-    data: "Connected"
-  });
-  const [peerState, isConnected, recErr] = useReceivePeerState(peerBrokerId);
+  const [board, setBoard] = useState(initializeState(size));
+  const [myPeerId, setMyPeerId] = useState("");
+  const [opponentPeerId, setOpponentPeerId] = useState("");
+  const [connection, setConnection] = useState(null)
+  const [data, setData] = useState(null)
 
   const clickHandler = (x, y) => {
     if (gameState.started && gameState.move && board[y][x] === null) {
@@ -41,57 +40,46 @@ const Game = ({ size, gameId }) => {
         )
       );
       setBoard(newBoard);
-      setState({ type: "turn", data: newBoard });
+      send({ type: "turn", data: newBoard });
 
       const is_win = checkWin(newBoard, x, y, gameState.isCircle);
-
-      console.log(is_win);
 
       if (is_win) {
         setGameState({
           ...gameState,
           move: false,
           winner: gameState.isCircle ? "O" : "X",
-          started: false
+          started: false,
         });
-        setState({ type: "win", data: gameState.isCircle });
+        send({ type: "win", data: gameState.isCircle });
       } else {
         setGameState({ ...gameState, move: false });
       }
     }
   };
 
-  useEffect(() => {
-    if (brokerId) {
-      const update = setInterval(() => {
-        axios
-          .get(`/game-connect/${gameId}/${brokerId}`)
-          .then(function(response) {
-            const data = response.data;
-            for (let name in data) {
-              let broker = data[name];
-              if (broker !== brokerId) {
-                setPeerBrokerId(broker);
-                clearInterval(update);
-                break;
-              }
-            }
-          })
-          .catch(function(error) {
-            console.log(error);
-          });
-      }, 2000);
-    }
-  }, [brokerId]);
+  const send = (data) => {
+      if(connection) {
+          connection.send(data);
+      }
+  }
 
   useEffect(() => {
-    if (peerState) {
-      switch (peerState.type) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const gameId = urlParams.get('gameId');
+        if (gameId) {
+            setOpponentPeerId(gameId);
+        }
+  }, [])
+
+  useEffect(() => {
+    // Determine player move
+    if (data) {
+      switch (data.type) {
         case "connection":
           break;
         case "turn":
-          setBoard(peerState.data);
-          console.log("My turn");
+          setBoard(data.data);
           setGameState({ ...gameState, move: true });
           break;
         case "win":
@@ -99,31 +87,52 @@ const Game = ({ size, gameId }) => {
             ...gameState,
             move: false,
             started: false,
-            winner: peerState.data ? "O" : "X"
+            winner: data.data ? "O" : "X",
           });
+        default:
       }
     }
-  }, [peerState]);
+  }, [data]);
 
   useEffect(() => {
-    if (isConnected) {
-      if (peerBrokerId > brokerId) {
+    peer.on('open', function(id) {
+        setMyPeerId(id)
+        peer.on('connection', function(conn) { 
+            setConnection(conn)
+            setOpponentPeerId(conn.id)
+
+            conn.on('data', function(data){
+                console.log(data)
+                setData(data)
+            })
+        });
+    });
+  }, [])
+
+  useEffect(() => {
+    if (connection) {
+        const starting = opponentPeerId > myPeerId;
         setGameState({
           ...gameState,
           started: true,
-          isCircle: true,
-          move: true
+          isCircle: starting,
+          move: starting,
         });
-      } else {
-        setGameState({
-          ...gameState,
-          started: true,
-          isCircle: false,
-          move: false
-        });
-      }
     }
-  }, [isConnected]);
+  }, [connection])
+
+  useEffect(() => {
+    if (!connection && opponentPeerId !== "" && myPeerId !== "") {
+        let conn = peer.connect(opponentPeerId);
+        conn.on('open', function() {
+            setConnection(conn)
+            conn.on('data', function(data){
+                console.log(data)
+                setData(data)
+            })
+        });
+    }
+  }, [opponentPeerId, myPeerId])
 
   return (
     <div>
@@ -132,14 +141,14 @@ const Game = ({ size, gameId }) => {
           <Board clickHandler={clickHandler} board={board} />
         </div>
         <div className="column">
-          <GameInfo gameState={gameState} isConnected={isConnected} />
+          <GameInfo gameState={gameState} isConnected={!!connection} />
         </div>
       </div>
       <nav className="level">
         <div className="level-item has-text-centered">
           <div>
             <p className="heading">Game Id</p>
-            <p className="title">{gameId}</p>
+            <p className="title">{myPeerId}</p>
           </div>
         </div>
       </nav>
